@@ -10,7 +10,8 @@
     "cryptojs": "^2.5.3",
     "esbuild": "^0.14.43",
     "postcss": "^8.4.14",
-    "tailwindcss": "^3.1.2"
+    "tailwindcss": "^3.1.2",
+    "tailwindcss-stimulus-components": "^3.0.4"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds",

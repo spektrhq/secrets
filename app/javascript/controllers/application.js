@@ -6,4 +6,7 @@ const application = Application.start()
 application.debug = false
 window.Stimulus   = application
 
+import { Toggle } from "tailwindcss-stimulus-components"
+application.register('toggle', Toggle)
+
 export { application }

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'faq', to: 'landing#faq', as: :faq
   # Defines the root path route ("/")
   root 'landing#index'
 end
