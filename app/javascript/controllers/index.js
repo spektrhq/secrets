@@ -4,5 +4,7 @@
 
 import { application } from "./application"
 
-import HelloController from "./hello_controller"
-application.register("hello", HelloController)
+import SecretFormController from "./secret_form_controller"
+application.register("secret-form", SecretFormController)
+import SecretRetrievalController from "./secret_retrieval_controller"
+application.register("secret-retrieval", SecretRetrievalController)
