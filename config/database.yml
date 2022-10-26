@@ -82,6 +82,7 @@ test:
 production:
   <<: *default
   host: <%= ENV['SECRETS_DATABASE_HOST'] %>
+  port: <%= ENV['SECRETS_DATABASE_PORT'] %>
   database: secrets_production
   username: <%= ENV['SECRETS_DATABASE_USERNAME'] %>
   password: <%= ENV["SECRETS_DATABASE_PASSWORD"] %>
