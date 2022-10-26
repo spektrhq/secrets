@@ -81,7 +81,7 @@ test:
 #
 production:
   <<: *default
-  host: localhost
+  host: <%= ENV['SECRETS_DATABASE_HOST'] %>
   database: secrets_production
-  username: secrets
+  username: <%= ENV['SECRETS_DATABASE_USERNAME'] %>
   password: <%= ENV["SECRETS_DATABASE_PASSWORD"] %>
