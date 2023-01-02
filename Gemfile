@@ -65,6 +65,7 @@ group :development do
   # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
   # gem "spring"
   gem 'capistrano', '~> 3.16', require: false
+  gem 'net-ssh', '>= 7.0.0'
   gem 'capistrano3-puma', github: 'seuros/capistrano-puma'
   gem 'capistrano-bundler'
   gem 'capistrano-rails', '~> 1.1'
