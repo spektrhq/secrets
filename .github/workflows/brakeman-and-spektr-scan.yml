@@ -1,0 +1,22 @@
+# .github/workflows/brakeman-spektr-scan.yml
+name: Brakeman and Spektr Scan
+on: [pull_request]
+
+jobs:
+  base:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2
+          bundler-cache: true
+      - name: Install brakeman and spektr
+        run: gem install brakeman spektr
+      - name: Brakeman
+        run: brakeman
