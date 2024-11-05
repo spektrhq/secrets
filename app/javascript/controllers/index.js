@@ -3,8 +3,6 @@
 // ./bin/rails generate stimulus controllerName
 
 import { application } from "./application"
-
+import { eagerLoadControllersFrom } from "@hotwired/stimulus-loading"
+eagerLoadControllersFrom("controllers", application)
 import SecretFormController from "./secret_form_controller"
-application.register("secret-form", SecretFormController)
-import SecretRetrievalController from "./secret_retrieval_controller"
-application.register("secret-retrieval", SecretRetrievalController)
