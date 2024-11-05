@@ -2,7 +2,7 @@
 
 import "@hotwired/turbo-rails"
 import "./controllers"
-import ClipboardJS from "clipboard"
+import ClipboardJS from "clipboard-js"
 
 document.addEventListener('turbo:load', function(){
   new ClipboardJS('.clipboard');
