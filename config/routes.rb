@@ -9,4 +9,5 @@ Rails.application.routes.draw do
   get 'faq', to: 'landing#faq', as: :faq
   # Defines the root path route ("/")
   root 'landing#index'
+  get 'up' => 'rails/health#show', as: :rails_health_check
 end
