@@ -1,7 +1,7 @@
 # syntax = docker/dockerfile:1
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
-ARG RUBY_VERSION=3.2.2
+ARG RUBY_VERSION=3.3.0
 FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 
 # Rails app lives here
@@ -14,11 +14,12 @@ ENV RAILS_ENV="production" \
     BUNDLE_WITHOUT="development"
 
 
+
 # Throw-away build stage to reduce size of final image
 FROM base as build
 # Install packages needed to build gems
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libvips \
+    apt-get install --no-install-recommends -y build-essential git \
     pkg-config curl
 
 # Install application gems
@@ -43,8 +44,12 @@ FROM base
 
 # Install packages needed for deployment
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y libvips postgresql-client curl && \
+    apt-get install --no-install-recommends -y curl && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+ENV LD_PRELOAD="libjemalloc.so.2" \
+    MALLOC_CONF="dirty_decay_ms:1000,narenas:2,background_thread:true,stats_print:true" \
+    RUBY_YJIT_ENABLE="1"
 
 # Copy built artifacts: gems, application
 COPY --from=build /usr/local/bundle /usr/local/bundle
@@ -60,3 +65,4 @@ ENTRYPOINT ["/rails/bin/docker-entrypoint"]
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
+CMD ["./bin/rails", "server"]
