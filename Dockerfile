@@ -1,7 +1,7 @@
 # syntax = docker/dockerfile:1
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
-ARG RUBY_VERSION=3.3.0
+ARG RUBY_VERSION=3.4.2
 FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 
 # Rails app lives here
@@ -23,7 +23,7 @@ RUN apt-get update -qq && \
     pkg-config curl
 
 # Install application gems
-COPY Gemfile Gemfile.lock ./
+COPY Gemfile Gemfile.lock ./.ruby-version ./
 RUN bundle install && \
     rm -rf ~/.bundle/ "${BUNDLE_PATH}"/ruby/*/cache "${BUNDLE_PATH}"/ruby/*/bundler/gems/*/.git && \
     bundle exec bootsnap precompile --gemfile
