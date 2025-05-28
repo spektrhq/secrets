@@ -10,12 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_11_100802) do
+ActiveRecord::Schema[7.2].define(version: 2025_05_28_120911) do
   create_table "secrets", force: :cascade do |t|
     t.text "content"
     t.string "iv"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-
 end
